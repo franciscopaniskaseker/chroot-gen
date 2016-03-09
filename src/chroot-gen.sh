@@ -73,7 +73,7 @@ ask_which_distro_chroot
 # proccess chroot creation
 case $selectdistro in
 	1)
-		create_chroot_with_yum http://fedora.c3sl.ufpr.br/linux/releases/23/Workstation/x86_64/os/Packages/f/fedora-release-workstation-23-1.noarch.rpm
+		create_chroot_with_yum http://fedora.c3sl.ufpr.br/linux/releases/23/Everything/x86_64/os/Packages/f/fedora-release-23-1.noarch.rpm
 		exit 0
 	;;
 	2)
