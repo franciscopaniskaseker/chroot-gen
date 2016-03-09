@@ -23,11 +23,11 @@ ask_free_space()
 {
 	echo -e "Do you have enough free space to create chroot in ${path_chroot} PATH? Provide at least 5GB."
 	df -h
-	echo -e "\n Please confirm if you have enough free space. Answers: (yes\\y\\no\\n)"
+	echo -e "\nPlease confirm if you have enough free space. Answers: (yes/y/no/n)"
 	read freespaceanswer
 
 	if [ \( $freespaceanswer != "yes" \) && \( $freespaceanswer != "y" \) ]
-	then
+	then	
   	      echo -e "Please release more space or provide other path that have enough free space and execute this script again."
 	      echo -e "Aborting..."
 	      exit 5
@@ -40,17 +40,33 @@ ask_free_space()
 # return: nothing
 create_chroot_path()
 {
-	echo -e "Type the full PATH that you want to create chroot. If dir PATH does not exist completely, it will be created."
-	read path_chroot
+	# assume that PATH already exist and can damage user files
+	exist_path_with_files=":"
+	while $exist_path_with_files
+	do
+		echo -e "Type the full PATH that you want to create chroot. If dir PATH does not exist completely, it will be created."
+		read path_chroot
 
-	# verify if PATH is absolut
-	if [[ $path_chroot != /* ]]
-	then
-		echo -e "PATH that you typed >> $path_chroot << is not absolut PATH."
-		echo -e "Aborting..."
-		exit 7	
-	fi
 
+		# verify if PATH is absolut
+		if [[ $path_chroot != /* ]]
+		then
+			echo -e "PATH that you typed >> $path_chroot << is not absolut PATH."
+			echo -e "You will be asked again to provide new path."
+		fi
+
+		# verify if PATH can damage user files
+		if [ "$(ls -A ${path_chroot})" ]
+		then
+			echo "You need to provide an empty directory. ${path_root} is not empty."
+			echo -e "You will be asked again to provide new path."
+		else
+			# now the path is secure to be used and we can proceed
+		    	exist_path_with_files="0"
+		fi
+	done
+
+	
 	# create path that user typed (if it already exist does not matter)
 	echo -e "Creating PATH ${path_chroot}..."
 	mkdir -p ${path_chroot}/var/lib/rpm/
@@ -120,5 +136,4 @@ create_chroot_with_yum()
 	echo -e "Finishing chroot creation...\c "
 	sync
 	echo -e "Finished with success!"
-
 }
