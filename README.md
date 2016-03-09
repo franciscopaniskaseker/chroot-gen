@@ -7,4 +7,5 @@ Create supported distros chroot directory
 
 # what we like to get in the future
 - support for redhat, oracle, ubuntu and debian distros
+- download distro-release and packages from best and near mirror
 - world peace
