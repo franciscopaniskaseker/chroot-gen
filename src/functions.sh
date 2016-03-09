@@ -58,7 +58,7 @@ create_chroot_path()
 		# verify if PATH can damage user files
 		if [ "$(ls -A ${path_chroot})" ]
 		then
-			echo "You need to provide an empty directory. ${path_root} is not empty."
+			echo "You need to provide an empty directory. ${path_chroot} is not empty."
 			echo -e "You will be asked again to provide new path."
 		else
 			# now the path is secure to be used and we can proceed
