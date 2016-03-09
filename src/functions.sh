@@ -26,7 +26,7 @@ ask_free_space()
 	echo -e "\nPlease confirm if you have enough free space. Answers: (yes/y/no/n)"
 	read freespaceanswer
 
-	if [ \( $freespaceanswer != "yes" \) && \( $freespaceanswer != "y" \) ]
+        if ( [ $freespaceanswer != "yes" ] && [ $freespaceanswer != "y" ] )
 	then	
   	      echo -e "Please release more space or provide other path that have enough free space and execute this script again."
 	      echo -e "Aborting..."
