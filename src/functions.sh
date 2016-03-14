@@ -11,6 +11,7 @@ ask_which_distro_chroot()
 	echo -e "Which distro do you want to create chroot?"
 	echo -e "(1) Fedora 23.1 x86_64 Workstation"
 	echo -e "(2) CentOS 7.2-1511 x86_64"
+	echo -e "(3) CentOS 6.7.12.3 x86_64"
 	echo -e "(0) Exit"
 	read selectdistro
 }

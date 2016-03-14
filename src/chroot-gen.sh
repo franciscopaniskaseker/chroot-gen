@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/ba:sh
 
 #### variables
 distro_version="/etc/*-release file"
@@ -78,6 +78,10 @@ case $selectdistro in
 	;;
 	2)
 		create_chroot_with_yum http://mirror.centos.org/centos/7/os/x86_64/Packages/centos-release-7-2.1511.el7.centos.2.10.x86_64.rpm
+		exit 0
+	;;
+	3)
+		create_chroot_with_yum http://mirror.centos.org/centos/6.7/os/x86_64/Packages/centos-release-6-7.el6.centos.12.3.x86_64.rpm
 		exit 0
 	;;
 
