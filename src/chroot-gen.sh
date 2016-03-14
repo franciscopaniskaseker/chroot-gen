@@ -1,4 +1,4 @@
-#!/bin/ba:sh
+#!/bin/bash
 
 #### variables
 distro_version="/etc/*-release file"
